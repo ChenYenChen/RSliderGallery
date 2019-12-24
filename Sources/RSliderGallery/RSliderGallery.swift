@@ -213,16 +213,13 @@ public class SliderGalleryView: UIView {
         
         if self.leftImage.frame.origin.x != 0 {
             self.leftImage.frame.origin = .zero
-//            self.leftImage.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         }
         
         if self.middleImage.frame.origin.x != self.bounds.width {
             self.middleImage.frame.origin = CGPoint(x: self.bounds.width, y: 0)
-            //self.middleImage.frame = CGRect(x: self.bounds.width, y: 0, width: self.bounds.width, height: self.bounds.height)
         }
         if self.rightImage.frame.origin.x != self.bounds.width * 2 {
             self.rightImage.frame.origin = CGPoint(x: self.bounds.width * 2, y: 0)
-            //self.rightImage.frame = CGRect(x: self.bounds.width * 2, y: 0, width: self.bounds.width, height: self.bounds.height)
         }
     }
     
@@ -280,12 +277,12 @@ public class SliderGalleryView: UIView {
     }
     
     // 開始
-    func start() {
+    public func start() {
         self.autoScroll()
     }
     
     // 暫停
-    func stop() {
+    public func stop() {
         self.removeTimer()
     }
     
@@ -293,29 +290,6 @@ public class SliderGalleryView: UIView {
     @objc private func leftScroll() {
         let offect = CGPoint(x: self.bounds.width * 2, y: 0)
         self.scrollView.setContentOffset(offect, animated: true)
-    }
-    
-    // 滾動後觸發
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // 獲取當前偏移量
-        let offect = scrollView.contentOffset.x
-        
-        // 向左滑
-        if offect >= self.bounds.width * 2 {
-            // 還原偏移
-            scrollView.contentOffset = CGPoint(x: self.bounds.width, y: 0)
-            self._currentIndex = self._currentIndex == self.dataSource.count - 1 ? 0 : self._currentIndex + 1
-        }
-        
-        // 向右滑
-        if offect <= 0 {
-            // 還原偏移
-            scrollView.contentOffset = CGPoint(x: self.bounds.width, y: 0)
-            self._currentIndex = self._currentIndex == 0 ? self.dataSource.count - 1 : self._currentIndex - 1
-        }
-        
-        self.resetImageViewSource()
-        self.pageControl.currentPage = self._currentIndex
     }
     
     override init(frame: CGRect) {
@@ -345,6 +319,28 @@ public class SliderGalleryView: UIView {
 
 }
 extension SliderGalleryView: UIScrollViewDelegate {
+    // 滾動後觸發
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 獲取當前偏移量
+        let offect = scrollView.contentOffset.x
+        
+        // 向左滑
+        if offect >= self.bounds.width * 2 {
+            // 還原偏移
+            scrollView.contentOffset = CGPoint(x: self.bounds.width, y: 0)
+            self._currentIndex = self._currentIndex == self.dataSource.count - 1 ? 0 : self._currentIndex + 1
+        }
+        
+        // 向右滑
+        if offect <= 0 {
+            // 還原偏移
+            scrollView.contentOffset = CGPoint(x: self.bounds.width, y: 0)
+            self._currentIndex = self._currentIndex == 0 ? self.dataSource.count - 1 : self._currentIndex - 1
+        }
+        
+        self.resetImageViewSource()
+        self.pageControl.currentPage = self._currentIndex
+    }
     // 手動滾動前
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         // 取消計時器（防止使用者手動移動圖片的時候也在自動滾動）
