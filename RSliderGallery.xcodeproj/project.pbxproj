@@ -22,7 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		968F2FEC23B0C2CF00AB4B2F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 968F2FEB23B0C2CF00AB4B2F /* Kingfisher */; };
-		968F2FEE23B0C44200AB4B2F /* SliderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968F2FED23B0C44200AB4B2F /* SliderItem.swift */; };
+		96C738E223B1AF4B008BF01F /* SliderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C738E123B1AF4B008BF01F /* SliderItem.swift */; };
 		OBJ_23 /* RSliderGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* RSliderGallery.swift */; };
 		OBJ_30 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_41 /* RSliderGalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* RSliderGalleryTests.swift */; };
@@ -48,7 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		968F2FED23B0C44200AB4B2F /* SliderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderItem.swift; sourceTree = "<group>"; };
+		96C738E123B1AF4B008BF01F /* SliderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SliderItem.swift; path = Sources/RSliderGallery/SliderItem.swift; sourceTree = "<group>"; };
 		OBJ_12 /* RSliderGalleryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSliderGalleryTests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* RSliderGallery.swift */,
-				968F2FED23B0C44200AB4B2F /* SliderItem.swift */,
+				96C738E123B1AF4B008BF01F /* SliderItem.swift */,
 			);
 			name = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -216,7 +216,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_23 /* RSliderGallery.swift in Sources */,
-				968F2FEE23B0C44200AB4B2F /* SliderItem.swift in Sources */,
+				96C738E223B1AF4B008BF01F /* SliderItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
