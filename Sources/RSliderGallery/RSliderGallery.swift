@@ -116,9 +116,7 @@ public class SliderGalleryView: UIView {
             }
         }
     }
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
+    
     // 滾動計時器
     private var autoScrollTimer: Timer?
     
@@ -294,7 +292,7 @@ public class SliderGalleryView: UIView {
         self.scrollView.setContentOffset(offect, animated: true)
     }
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .clear
     }
