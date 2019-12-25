@@ -116,7 +116,9 @@ public class SliderGalleryView: UIView {
             }
         }
     }
-    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
     // 滾動計時器
     private var autoScrollTimer: Timer?
     
