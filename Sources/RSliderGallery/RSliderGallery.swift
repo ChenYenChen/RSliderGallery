@@ -160,7 +160,7 @@ public class SliderGalleryView: UIView {
     // 如果只有一張圖片
     private func onlyImage() {
         guard self.type == .only else { return }
-        self.setImage(image: self.middleImage, item: self.imageArray[0])
+        self.setImage(image: self.middleImage, slider: self.imageArray.first)
         self.addSubview(self.middleImage)
         self.addTap()
     }
@@ -198,17 +198,17 @@ public class SliderGalleryView: UIView {
     private func resetImageViewSource() {
         guard !self.imageArray.isEmpty else { return }
         if self._currentIndex == 0 {
-            self.setImage(image: self.leftImage, item: self.imageArray.last!)
-            self.setImage(image: self.middleImage, item: self.imageArray.first!)
-            self.setImage(image: self.rightImage, item: self.imageArray[1])
+            self.setImage(image: self.leftImage, slider: self.imageArray.last)
+            self.setImage(image: self.middleImage, slider: self.imageArray.first)
+            self.setImage(image: self.rightImage, slider: self.imageArray[1])
         } else if self._currentIndex == self.dataSource.count - 1 {
-            self.setImage(image: self.leftImage, item: self.imageArray[self._currentIndex - 1])
-            self.setImage(image: self.middleImage, item: self.imageArray.last!)
-            self.setImage(image: self.rightImage, item: self.imageArray.first!)
+            self.setImage(image: self.leftImage, slider: self.imageArray[self._currentIndex - 1])
+            self.setImage(image: self.middleImage, slider: self.imageArray.last)
+            self.setImage(image: self.rightImage, slider: self.imageArray.first)
         } else {
-            self.setImage(image: self.leftImage, item: self.imageArray[self._currentIndex - 1])
-            self.setImage(image: self.middleImage, item: self.imageArray[self._currentIndex])
-            self.setImage(image: self.rightImage, item: self.imageArray[self._currentIndex + 1])
+            self.setImage(image: self.leftImage, slider: self.imageArray[self._currentIndex - 1])
+            self.setImage(image: self.middleImage, slider: self.imageArray[self._currentIndex])
+            self.setImage(image: self.rightImage, slider: self.imageArray[self._currentIndex + 1])
         }
         
         if self.leftImage.frame.origin.x != 0 {
@@ -224,11 +224,12 @@ public class SliderGalleryView: UIView {
     }
     
     // 下載圖片
-    private func setImage(image view: UIImageView, item: SliderItem) {
-        view.image = item.image
-        guard item.image == nil else { return }
+    private func setImage(image view: UIImageView, slider item: SliderItem?) {
+        guard let sliderItem = item else { return }
+        view.image = sliderItem.image
+        guard sliderItem.image == nil else { return }
         view.image = self.placeholderImage
-        item.reload { [weak self] (itemImage) in
+        sliderItem.reload { [weak self] (itemImage) in
             guard let `self` = self else { return }
             switch self.type {
             case .much:
@@ -295,6 +296,9 @@ public class SliderGalleryView: UIView {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .clear
+        
+        self.type = .only
+        self.creatView()
     }
     
     override public func layoutSubviews() {
