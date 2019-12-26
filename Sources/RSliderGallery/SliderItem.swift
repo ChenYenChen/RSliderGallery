@@ -29,15 +29,12 @@ class SliderItem: NSObject {
         }
         let cache = ImageCache.default
         
-        guard cache.isCached(forKey: imageUrl) else {
-            self.loadImage(url)
-            return
-        }
         cache.retrieveImage(forKey: imageUrl) { (result) in
             switch result {
             case .success(let value):
                 self.image = value.image
-            case .failure(_):
+            case .failure(let error):
+                print("show error = \(error.localizedDescription)")
                 self.loadImage(url)
             }
         }
