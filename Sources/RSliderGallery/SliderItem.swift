@@ -27,15 +27,14 @@ class SliderItem: NSObject {
             self.image = UIImage()
             return
         }
-        let cache = ImageCache.default
-        
-        cache.retrieveImage(forKey: imageUrl) { (result) in
+        KingfisherManager.shared.retrieveImage(with: url) { (result) in
             switch result {
             case .success(let value):
                 self.image = value.image
+                self.reloadComplete?(value.image)
             case .failure(let error):
-                print("show error = \(error.localizedDescription)")
                 self.loadImage(url)
+                print("show error = \(error.errorDescription ?? "")")
             }
         }
     }
